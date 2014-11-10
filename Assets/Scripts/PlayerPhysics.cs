@@ -4,23 +4,52 @@ using System.Collections;
 public class PlayerPhysics : MonoBehaviour {
 
 	//This script is attached to the player
-	float jumpPower = 1.0f; //assign an integer for jump power
+	float jumpPower = 5.0f; //assign an integer for jump power
 	Vector2 jumpVector;
-	KeyCode jumpKey = KeyCode.UpArrow; //assign jump button here
-	KeyCode downKey = KeyCode.DownArrow; //assign down button here
+	Vector2 leftVector;
+	Vector2 rightVector;
+	KeyCode jumpKey; 
+	KeyCode downKey;
+	KeyCode leftKey;
+	KeyCode rightKey;	
 
-	GameObject player = GameObject.FindWithTag("Player");
+	GameObject player;
+
 	//BoxCollider2D box = player.GetComponent(BoxCollider2D) as BoxCollider2D; //assign the BoxCollider2D of your player and set it to is trigger
-	
+
+	void Start()
+	{
+		jumpKey = KeyCode.UpArrow; //assign jump button here
+		downKey = KeyCode.DownArrow; //assign down button here
+		leftKey = KeyCode.LeftArrow;
+		rightKey = KeyCode.RightArrow;
+
+		player = GameObject.FindWithTag("Player");
+	}	
+
 	void Update () 
 	{
 		//Jump
 		if(Input.GetKeyDown(jumpKey))
 		{	
-			jumpVector = Rigidbody2D.velocity;
-			jumpVector.y = 1.0f;
-			rigidbody2D.velocity.y = jumpVector.y;
-		}        
+			jumpVector = rigidbody2D.velocity;
+			jumpVector.y = jumpPower;
+			rigidbody2D.velocity = jumpVector;
+		}
+		if(Input.GetKeyDown(downKey))
+		{
+			//Put crouching stuff here
+		}
+
+		if(Input.GetKey(leftKey))
+		{
+			player.transform.Translate(Vector3.left * Time.deltaTime * 5);
+		}  
+
+		if(Input.GetKey(rightKey))
+		{
+			player.transform.Translate(Vector3.right * Time.deltaTime * 5);
+		}     
 		
 		// If you want your object to go down on your platform
 		// Similar to the Contra game platform feature.
