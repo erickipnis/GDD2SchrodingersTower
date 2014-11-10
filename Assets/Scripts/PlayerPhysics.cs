@@ -36,10 +36,6 @@ public class PlayerPhysics : MonoBehaviour {
 			jumpVector.y = jumpPower;
 			rigidbody2D.velocity = jumpVector;
 		}
-		if(Input.GetKeyDown(downKey))
-		{
-			//Put crouching stuff here
-		}
 
 		if(Input.GetKey(leftKey))
 		{
@@ -49,16 +45,14 @@ public class PlayerPhysics : MonoBehaviour {
 		if(Input.GetKey(rightKey))
 		{
 			player.transform.Translate(Vector3.right * Time.deltaTime * 5);
-		}     
-		
+		}
 		// If you want your object to go down on your platform
 		// Similar to the Contra game platform feature.
 		//if(Input.GetKeyDown(downKey))
 		//{
 		//	box.isTrigger = true;
 		//}
-	}        
-	
+	}
 	
 	// have a seperated gameobject that has a boxcollider2d make sure is trigger is checked
 	// in my case I named it Trigger and parent it to the platform
