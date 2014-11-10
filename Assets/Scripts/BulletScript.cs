@@ -8,6 +8,6 @@ public class BulletScript : MonoBehaviour
 	
 	void Start()
 	{
-		Destroy(gameObject, 20);s
+		Destroy(gameObject, 20);
 	}
 }
