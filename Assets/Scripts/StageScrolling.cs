@@ -4,10 +4,16 @@ using System.Collections;
 public class StageScrolling : MonoBehaviour {
 
 	GameObject stage;
+	GameObject score;
+	GameObject survived;
 
 	int incrementer = 0;
 	int change = 0;
-	int timeToScroll = 0;
+	int definedScroll = 3000;
+
+	int levelSurvived = 0;
+
+	int timeToScroll;
 
 	bool move = false;
 	bool scroll = false;
@@ -18,12 +24,25 @@ public class StageScrolling : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		stage = GameObject.FindGameObjectWithTag("Stage");
+
+		score = GameObject.FindGameObjectWithTag("Score");
+
+		survived = GameObject.FindGameObjectWithTag("Levels");
+
 		startPosition = stage.transform.position;
+
+		timeToScroll = definedScroll;
+
+		DontDestroyOnLoad(score);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	    
+		TextMesh scoreTm = (TextMesh)score.GetComponent(typeof(TextMesh));
+
+		TextMesh levelTm = (TextMesh)survived.GetComponent(typeof(TextMesh));
+
 		if(changeStart)
 		{
 			startPosition = stage.transform.position;
@@ -50,6 +69,10 @@ public class StageScrolling : MonoBehaviour {
 			{
 				move = false;
 				changeStart = true;
+
+				levelSurvived++;
+
+				levelTm.text = levelSurvived.ToString();
 			}
 
 			if(!scroll)
@@ -63,15 +86,19 @@ public class StageScrolling : MonoBehaviour {
 		}
 		else
 		{
-			if(timeToScroll >= 300)
+
+			if(timeToScroll <= 0)
 			{
 				move = true;
-				timeToScroll = 0;
+				timeToScroll = definedScroll;
 			}
 			else
 			{
-				timeToScroll++;
+				timeToScroll--;
 			}
+
+			scoreTm.text = (timeToScroll/60).ToString();
+
 		}
 	}
 }
