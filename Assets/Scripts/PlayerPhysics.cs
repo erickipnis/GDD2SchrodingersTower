@@ -5,6 +5,9 @@ public class PlayerPhysics : MonoBehaviour {
 
 	//This script is attached to the player
 	float jumpPower = 5.0f; //assign an integer for jump power
+	
+	bool crouching;
+
 	Vector2 jumpVector;
 	Vector2 leftVector;
 	Vector2 rightVector;
@@ -25,10 +28,15 @@ public class PlayerPhysics : MonoBehaviour {
 		rightKey = KeyCode.RightArrow;
 
 		player = GameObject.FindWithTag("Player");
+
+		crouching = false;
 	}	
 
 	void Update () 
 	{
+		crouching = Input.GetKey(downKey);		
+		isCrouching();		
+
 		//Jump
 		if(Input.GetKeyDown(jumpKey))
 		{	
@@ -46,12 +54,24 @@ public class PlayerPhysics : MonoBehaviour {
 		{
 			player.transform.Translate(Vector3.right * Time.deltaTime * 5);
 		}
+
 		// If you want your object to go down on your platform
 		// Similar to the Contra game platform feature.
 		//if(Input.GetKeyDown(downKey))
 		//{
 		//	box.isTrigger = true;
 		//}
+	}
+
+	void isCrouching(){
+		BoxCollider2D boxCollider = GetComponent("BoxCollider2D") as BoxCollider2D;
+		CircleCollider2D circleCollider = GetComponent("CircleCollider2D") as CircleCollider2D;
+		if(crouching){
+			boxCollider.center = circleCollider.center;
+		}
+		else{
+			boxCollider.center = circleCollider.center + new Vector2(0,0.4f);
+		}
 	}
 	
 	// have a seperated gameobject that has a boxcollider2d make sure is trigger is checked
