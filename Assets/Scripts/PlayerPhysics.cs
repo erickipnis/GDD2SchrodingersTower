@@ -34,8 +34,8 @@ public class PlayerPhysics : MonoBehaviour {
 
 	void Update () 
 	{
-		crouching = Input.GetKey(downKey);		
-		isCrouching();		
+		//crouching = Input.GetKey(downKey);		
+		//isCrouching();		
 
 		//Jump
 		if(Input.GetKeyDown(jumpKey))
@@ -73,7 +73,16 @@ public class PlayerPhysics : MonoBehaviour {
 			boxCollider.center = circleCollider.center + new Vector2(0,0.4f);
 		}
 	}
-	
+
+	/*void OnCollisionEnter2D(Collision2D coll)
+	{
+		if (coll.gameObject.tag == "Bullet")
+		{
+			Destroy(gameObject);
+			Destroy(coll.gameObject);
+		}
+
+	}	*/
 	// have a seperated gameobject that has a boxcollider2d make sure is trigger is checked
 	// in my case I named it Trigger and parent it to the platform
 	// and make sure it is just a little under your platform.

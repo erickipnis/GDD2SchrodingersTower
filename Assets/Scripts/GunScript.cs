@@ -32,9 +32,9 @@ public class GunScript : MonoBehaviour
 			weapon.Attack(false);
 
 		// Movement
-		if(transform.position.y > 5)
+		if(transform.position.y > 2.5)
 			direction = -1;
-		else if(transform.position.y < -5)
+		else if(transform.position.y < -4.15)
 			direction = 1;
 
 		movement = new Vector2(0, speed * direction);
@@ -51,7 +51,7 @@ public class GunScript : MonoBehaviour
 	{
 		if (CanAttack)
 		{
-			shootCooldown = shootingRate;
+			shootCooldown = .5f;
 			
 			var shotTransform = Instantiate(bulletPrefab) as Transform;
 			
