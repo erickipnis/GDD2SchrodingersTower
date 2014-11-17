@@ -39,9 +39,9 @@ public class StageScrolling : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	    
-		TextMesh scoreTm = (TextMesh)score.GetComponent(typeof(TextMesh));
+		GUIText scoreTm = (GUIText)score.GetComponent(typeof(GUIText));
 
-		TextMesh levelTm = (TextMesh)survived.GetComponent(typeof(TextMesh));
+		GUIText levelTm = (GUIText)survived.GetComponent(typeof(GUIText));
 
 		if(changeStart)
 		{

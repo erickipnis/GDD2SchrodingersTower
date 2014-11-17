@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Instructions : MonoBehaviour {
+public class Instructions : MonoBehaviour
+{
 
 	private GUISkin skin;
-	
-	// Use this for initialization
+
 	void Start () 
 	{
-		skin = Resources.Load("Instructions") as GUISkin;
+		skin = Resources.Load("ButtonGUI") as GUISkin;
 	}
-	
-	// Update is called once per frame
+
 	void OnGUI() 
 	{
 		const int buttonWidth = 200;

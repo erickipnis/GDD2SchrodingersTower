@@ -3,6 +3,7 @@
 public class GunScript : MonoBehaviour
 {
 	// Movement Variables
+	public string type = "side";
 	public float speed = 3;
 	public float direction = 1;
 	
@@ -32,10 +33,20 @@ public class GunScript : MonoBehaviour
 			weapon.Attack(false);
 
 		// Movement
-		if(transform.position.y > 2.5)
-			direction = -1;
-		else if(transform.position.y < -4.15)
-			direction = 1;
+		if (type == "side")
+		{
+			if (transform.position.y > 2.5)
+				direction = -1;
+			else if (transform.position.y < -4.15)
+				direction = 1;
+		}
+		else if (type == "top")
+		{
+			if (transform.position.x > 2.5)
+				direction = -1;
+			else if (transform.position.x < -4.15)
+				direction = 1;
+		}
 
 		movement = new Vector2(0, speed * direction);
 	}

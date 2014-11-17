@@ -1,20 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameOverScreen : MonoBehaviour {
+public class GameOverScreen : MonoBehaviour
+{
 
 	private GUISkin skin;
 
-	// Use this for initialization
 	void Start () {
 
-		skin = Resources.Load("GameOver") as GUISkin;
+		skin = Resources.Load("ButtonGUI") as GUISkin;
 	}
 
 	void OnGUI() 
 	{
 		const int buttonWidth = 200;
-		const int instrButtonWidth = 200;
+		const int instrButtonWidth = 250;
 		const int buttonHeight = 65;
 		
 		GUI.skin = skin;
