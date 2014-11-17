@@ -15,7 +15,8 @@ public class PlayerPhysics : MonoBehaviour {
 	KeyCode downKey;
 	KeyCode leftKey;
 	KeyCode rightKey;	
-
+	bool isJumping;
+	int jumpCount;
 	GameObject player;
 
 	//BoxCollider2D box = player.GetComponent(BoxCollider2D) as BoxCollider2D; //assign the BoxCollider2D of your player and set it to is trigger
@@ -26,7 +27,8 @@ public class PlayerPhysics : MonoBehaviour {
 		downKey = KeyCode.DownArrow; //assign down button here
 		leftKey = KeyCode.LeftArrow;
 		rightKey = KeyCode.RightArrow;
-
+		isJumping = false;
+		jumpCount = 0;
 		player = GameObject.FindWithTag("Player");
 
 		crouching = false;
@@ -38,11 +40,13 @@ public class PlayerPhysics : MonoBehaviour {
 		//isCrouching();		
 
 		//Jump
-		if(Input.GetKeyDown(jumpKey))
+		if(Input.GetKeyDown(jumpKey) && jumpCount <= 1)
 		{	
 			jumpVector = rigidbody2D.velocity;
 			jumpVector.y = jumpPower;
 			rigidbody2D.velocity = jumpVector;
+			jumpCount++;
+			isJumping = true;
 		}
 
 		if(Input.GetKey(leftKey))
@@ -74,7 +78,7 @@ public class PlayerPhysics : MonoBehaviour {
 		}
 	}
 
-	/*void OnCollisionEnter2D(Collision2D coll)
+	void OnCollisionEnter2D(Collision2D coll)
 	{
 		if (coll.gameObject.tag == "Bullet")
 		{
@@ -82,7 +86,13 @@ public class PlayerPhysics : MonoBehaviour {
 			Destroy(coll.gameObject);
 		}
 
-	}	*/
+		if(coll.gameObject.tag == "Elevator" || coll.gameObject.tag == "Block")
+		{
+			isJumping = false;
+			jumpCount = 0;
+		}
+
+	}	
 	// have a seperated gameobject that has a boxcollider2d make sure is trigger is checked
 	// in my case I named it Trigger and parent it to the platform
 	// and make sure it is just a little under your platform.
