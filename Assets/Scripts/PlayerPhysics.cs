@@ -80,11 +80,11 @@ public class PlayerPhysics : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		if (coll.gameObject.tag == "Bullet")
+		/*if (coll.gameObject.tag == "Bullet")
 		{
 			Destroy(gameObject);
 			Destroy(coll.gameObject);
-		}
+		}*/
 
 		if(coll.gameObject.tag == "Elevator" || coll.gameObject.tag == "Block")
 		{
