@@ -4,9 +4,8 @@ public class GunScript : MonoBehaviour
 {
 	// Movement Variables
 	public string type = "side";
-	public float speed = 3;
-	public float direction = 1;
-	
+	public Vector2 speed = new Vector2(3, 3);
+	public Vector2 direction = new Vector2(1, 0);
 	private Vector2 movement;
 
 	// Bullet Prefab
@@ -15,6 +14,9 @@ public class GunScript : MonoBehaviour
 	// Cooldown Variables
 	public float shootingRate = 0.25f;
 	private float shootCooldown;
+
+	// Random Frequency
+	public float rFreq = 99;
 	
 	void Start()
 	{
@@ -36,19 +38,19 @@ public class GunScript : MonoBehaviour
 		if (type == "side")
 		{
 			if (transform.position.y > 2.5)
-				direction = -1;
+				direction.y = -1;
 			else if (transform.position.y < -4.15)
-				direction = 1;
+				direction.y = 1;
 		}
 		else if (type == "top")
 		{
-			if (transform.position.x > 2.5)
-				direction = -1;
-			else if (transform.position.x < -4.15)
-				direction = 1;
+			if (transform.position.x > 6.5)
+				direction.x = -1;
+			else if (transform.position.x < -6.5)
+				direction.x = 1;
 		}
 
-		movement = new Vector2(0, speed * direction);
+		movement = new Vector2(speed.x * direction.x, speed.y * direction.y);
 	}
 
 	// Update Movement with RigidBody
@@ -63,18 +65,23 @@ public class GunScript : MonoBehaviour
 		if (CanAttack)
 		{
 			shootCooldown = .5f;
+
+			int r = (int)Random.Range(0, rFreq);
+			print (r);
+			if(r == 0)
+			{
+				var shotTransform = Instantiate(bulletPrefab) as Transform;
 			
-			var shotTransform = Instantiate(bulletPrefab) as Transform;
+				shotTransform.position = this.transform.position;
 			
-			shotTransform.position = this.transform.position;
-			
-			BulletScript shot = shotTransform.gameObject.GetComponent<BulletScript>();
-			if (shot != null)
+				BulletScript shot = shotTransform.gameObject.GetComponent<BulletScript>();
+				if (shot != null)
 				shot.isPlayerShot = isPlayer;
 			
-			MoveScript move = shotTransform.gameObject.GetComponent<MoveScript>();
-			if (move != null)
+				MoveScript move = shotTransform.gameObject.GetComponent<MoveScript>();
+				if (move != null && type == "side")
 				move.direction = this.transform.right;
+			}
 		}
 	}
 	
