@@ -67,8 +67,11 @@ public class GunScript : MonoBehaviour
 			shootCooldown = .5f;
 
 			int r = (int)Random.Range(0, rFreq);
-			print (r);
-			if(r == 0)
+			//print (r);
+			Debug.Log(r);
+
+
+			if(r <= 40 )
 			{
 				var shotTransform = Instantiate(bulletPrefab) as Transform;
 			

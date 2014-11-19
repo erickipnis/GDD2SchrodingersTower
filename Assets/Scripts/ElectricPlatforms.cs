@@ -20,7 +20,7 @@ public class ElectricPlatforms : MonoBehaviour {
 		float randomNumber = Random.value * 100;
 
 		timeElapsed += Time.deltaTime;
-		Debug.Log(timeElapsed);
+	//	Debug.Log(timeElapsed);
 
 		//Debug.Log(randomNumber);
 

@@ -25,9 +25,9 @@ public class BulletScript : MonoBehaviour
 		}
 		if (coll.gameObject.tag == "Block")
 		{
-			//Physics2D.IgnoreCollision(this.collider2D, coll.collider);
+			Physics2D.IgnoreCollision(this.collider2D, coll.collider);
 
-			Destroy(gameObject);
+			//Destroy(gameObject);
 		}
 	}
 }
