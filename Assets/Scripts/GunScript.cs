@@ -15,6 +15,7 @@ public class GunScript : MonoBehaviour
 	// Cooldown Variables
 	public float shootingRate = 0.25f;
 	private float shootCooldown;
+
 	
 	void Start()
 	{
@@ -26,12 +27,12 @@ public class GunScript : MonoBehaviour
 		// Cooldown
 		if (shootCooldown > 0)
 			shootCooldown -= Time.deltaTime;
-
+		
 		// Shooting
 		GunScript weapon = GetComponent<GunScript>();
 		if (weapon != null)
 			weapon.Attack(false);
-
+		
 		// Movement
 		if (type == "side")
 		{
@@ -47,7 +48,7 @@ public class GunScript : MonoBehaviour
 			else if (transform.position.x < -4.15)
 				direction = 1;
 		}
-
+		
 		movement = new Vector2(0, speed * direction);
 	}
 

@@ -7,6 +7,11 @@ public class StageScrolling : MonoBehaviour {
 	GameObject score;
 	GameObject survived;
 
+	GameObject playablePre;
+	GameObject[] playables;
+
+	GameObject guns;
+
 	int incrementer = 0;
 	int change = 0;
 	int definedScroll = 3000;
@@ -15,11 +20,17 @@ public class StageScrolling : MonoBehaviour {
 
 	int timeToScroll;
 
+	int current = 0;
+
 	bool move = false;
 	bool scroll = false;
 	bool changeStart = false;
 
 	Vector2 startPosition;
+	Vector2 gunCurrent;
+
+	int numLevels = 0;
+	int numGoneThrough = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -33,7 +44,29 @@ public class StageScrolling : MonoBehaviour {
 
 		timeToScroll = definedScroll;
 
-		DontDestroyOnLoad(score);
+		playables = GameObject.FindGameObjectsWithTag("Playable");
+
+		guns = GameObject.FindGameObjectWithTag("Gun");
+
+		gunCurrent = guns.transform.position;
+
+		/*foreach(GameObject play in playables)
+		{
+			//numLevels++;
+
+			//if(play.GetComponent<Gun>() != null)
+			//{}
+
+			gun.GetComponent<GunScript>().enabled = false;
+			gun.GetComponent<SpriteRenderer>().enabled = false;
+
+
+		}*/
+
+		guns.GetComponent<GunScript>().enabled = true;
+		guns.GetComponent<SpriteRenderer>().enabled = true;
+		guns.GetComponent<Collider2D>().enabled = false;
+		//DontDestroyOnLoad(score);
 	}
 	
 	// Update is called once per frame
@@ -53,6 +86,13 @@ public class StageScrolling : MonoBehaviour {
 		{
 			Vector2 currentPosition = stage.transform.position;
 			Vector2 startP = startPosition;
+
+			guns.GetComponent<GunScript>().enabled = false;
+			guns.GetComponent<SpriteRenderer>().enabled = false;
+			guns.GetComponent<Collider2D>().enabled = false;
+
+
+			guns.transform.position = gunCurrent;
 			
 			while(scroll)
 			{
@@ -73,6 +113,17 @@ public class StageScrolling : MonoBehaviour {
 				levelSurvived++;
 
 				levelTm.text = levelSurvived.ToString();
+
+				guns.GetComponent<GunScript>().enabled = true;
+				guns.GetComponent<SpriteRenderer>().enabled = true;
+				guns.GetComponent<Collider2D>().enabled = false;
+
+				/*playables[current].SetActive(false);
+				
+				current++;
+				
+				playables[current].SetActive(true);*/
+
 			}
 
 			if(!scroll)
@@ -91,6 +142,7 @@ public class StageScrolling : MonoBehaviour {
 			{
 				move = true;
 				timeToScroll = definedScroll;
+
 			}
 			else
 			{
