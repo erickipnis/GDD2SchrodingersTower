@@ -71,7 +71,7 @@ public class GunScript : MonoBehaviour
 			Debug.Log(r);
 
 
-			if(r <= 40 )
+			if(r <= 75 )
 			{
 				var shotTransform = Instantiate(bulletPrefab) as Transform;
 			
