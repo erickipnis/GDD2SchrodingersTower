@@ -14,7 +14,7 @@ public class StageScrolling : MonoBehaviour {
 
 	int incrementer = 0;
 	int change = 0;
-	int definedScroll = 3000;
+	int definedScroll = 1000;
 
 	int levelSurvived = 0;
 
