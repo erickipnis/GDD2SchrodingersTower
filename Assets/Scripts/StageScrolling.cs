@@ -16,7 +16,7 @@ public class StageScrolling : MonoBehaviour {
 	int change = 0;
 	int definedScroll = 1000;
 
-	int levelSurvived = 0;
+	public static int levelSurvived = 0;
 
 	int timeToScroll;
 
