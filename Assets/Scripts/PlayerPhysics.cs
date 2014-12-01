@@ -23,10 +23,10 @@ public class PlayerPhysics : MonoBehaviour {
 
 	void Start()
 	{
-		jumpKey = KeyCode.UpArrow; //assign jump button here
-		downKey = KeyCode.DownArrow; //assign down button here
-		leftKey = KeyCode.LeftArrow;
-		rightKey = KeyCode.RightArrow;
+		jumpKey = KeyCode.W; //assign jump button here
+		downKey = KeyCode.S; //assign down button here
+		leftKey = KeyCode.A;
+		rightKey = KeyCode.D;
 		isJumping = false;
 		jumpCount = 0;
 		player = GameObject.FindWithTag("Player");
@@ -58,6 +58,10 @@ public class PlayerPhysics : MonoBehaviour {
 		{
 			player.transform.Translate(Vector3.right * Time.deltaTime * 5);
 		}
+		if(isJumping && Input.GetKey(downKey))
+		{
+			player.transform.Translate(Vector3.down * Time.deltaTime * 4);
+		}
 
 		// If you want your object to go down on your platform
 		// Similar to the Contra game platform feature.
@@ -86,7 +90,7 @@ public class PlayerPhysics : MonoBehaviour {
 			Destroy(coll.gameObject);
 		}*/
 
-		if(coll.gameObject.tag == "Elevator" || coll.gameObject.tag == "Block")
+		if(coll.gameObject.tag == "Floor" || coll.gameObject.tag == "Block")
 		{
 			isJumping = false;
 			jumpCount = 0;
