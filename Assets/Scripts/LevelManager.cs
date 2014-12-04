@@ -5,6 +5,7 @@ public class LevelManager : MonoBehaviour {
 
 	GameObject cannon;
 	public GameObject rightCannonPrefab;
+	public GameObject leftCannonPrefab;
 	public GameObject topCannonPrefab;
 	public static bool gunSpawned;
 
@@ -14,6 +15,7 @@ public class LevelManager : MonoBehaviour {
 		gunSpawned = false;
 		rightCannonPrefab = Resources.Load("Prefabs/Guns/RightGun", typeof(GameObject)) as GameObject;
 		topCannonPrefab = Resources.Load("Prefabs/Guns/TopGunLeft", typeof(GameObject)) as GameObject;
+		leftCannonPrefab = Resources.Load("Prefabs/Guns/LeftGun", typeof(GameObject)) as GameObject;
 	}
 	
 	// Update is called once per frame
@@ -31,12 +33,12 @@ public class LevelManager : MonoBehaviour {
 		}
 		else if (StageScrolling.levelSurvived == 3 && gunSpawned == false)
 		{
-			cannon = (GameObject) GameObject.Instantiate(rightCannonPrefab, new Vector3(6.434641f, -0.2688184f, 0f), Quaternion.identity);
+			cannon = (GameObject) GameObject.Instantiate(rightCannonPrefab, new Vector3(6.434641f, -0.588184f, 0f), Quaternion.identity);
 			gunSpawned = true;
 		}
 		else if (StageScrolling.levelSurvived == 4 && gunSpawned == false)
 		{
-			cannon = (GameObject) GameObject.Instantiate(rightCannonPrefab, new Vector3(6.434641f, -0.2688184f, 0f), Quaternion.identity);
+			cannon = (GameObject) GameObject.Instantiate(leftCannonPrefab, new Vector3(-6.390183f, -0.588184f, 0f), Quaternion.identity);
 			gunSpawned = true;
 		}
 	}
