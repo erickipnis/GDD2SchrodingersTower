@@ -26,7 +26,7 @@ public class BulletScript : MonoBehaviour
 			Application.LoadLevel("GameOver");
 		}
 		
-		if (coll.gameObject.tag == "Elevator")
+		if (coll.gameObject.tag == "Elevator" || coll.gameObject.tag == "Floor")
 		{
 			Destroy(gameObject);
 		}

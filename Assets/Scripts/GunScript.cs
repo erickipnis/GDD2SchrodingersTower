@@ -17,10 +17,14 @@ public class GunScript : MonoBehaviour
 
 	// Random Frequency
 	public float rFreq = 99;
+
+	public static Vector2 gunPosition;
 	
 	void Start()
 	{
 		shootCooldown = 0f;
+
+		gunPosition = 0;;
 	}
 	
 	void Update()
