@@ -14,7 +14,7 @@ public class StageScrolling : MonoBehaviour {
 
 	int incrementer = 0;
 	int change = 0;
-	int definedScroll = 1000;
+	int definedScroll = 300;
 
 	public static int levelSurvived = 0;
 
@@ -112,7 +112,11 @@ public class StageScrolling : MonoBehaviour {
 				move = false;
 				changeStart = true;
 
+				LevelManager.gunSpawned = false;
+
 				levelSurvived++;
+
+
 
 				levelTm.text = levelSurvived.ToString();
 
