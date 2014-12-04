@@ -29,5 +29,11 @@ public class BulletScript : MonoBehaviour
 
 			//Destroy(gameObject);
 		}
+		if (coll.gameObject.tag == "Bullet")
+		{
+			Physics2D.IgnoreCollision(this.collider2D, coll.collider);
+			
+			//Destroy(gameObject);
+		}
 	}
 }
