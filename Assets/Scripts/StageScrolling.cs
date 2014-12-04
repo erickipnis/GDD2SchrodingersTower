@@ -84,6 +84,8 @@ public class StageScrolling : MonoBehaviour {
 
 		if(move)
 		{
+			GearRotate.rotate = true;
+
 			Vector2 currentPosition = stage.transform.position;
 			Vector2 startP = startPosition;
 
@@ -137,6 +139,7 @@ public class StageScrolling : MonoBehaviour {
 		}
 		else
 		{
+			GearRotate.rotate = false;
 
 			if(timeToScroll <= 0)
 			{
