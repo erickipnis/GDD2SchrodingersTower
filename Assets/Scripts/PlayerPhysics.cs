@@ -6,7 +6,7 @@ public class PlayerPhysics : MonoBehaviour {
 	//This script is attached to the player
 	float jumpPower = 5.0f; //assign an integer for jump power
 	
-	bool crouching;
+	bool crouching=false;
 
 	Vector2 jumpVector;
 	Vector2 leftVector;
@@ -18,6 +18,10 @@ public class PlayerPhysics : MonoBehaviour {
 	bool isJumping;
 	int jumpCount;
 	GameObject player;
+	bool facingRight = true;
+	float speed = 0;
+	Animator anim;
+
 
 	//BoxCollider2D box = player.GetComponent(BoxCollider2D) as BoxCollider2D; //assign the BoxCollider2D of your player and set it to is trigger
 
@@ -31,13 +35,14 @@ public class PlayerPhysics : MonoBehaviour {
 		jumpCount = 0;
 		player = GameObject.FindWithTag("Player");
 
-		crouching = false;
+		anim=GetComponent<Animator>();
 	}	
 
 	void Update () 
 	{
-		//crouching = Input.GetKey(downKey);		
-		//isCrouching();		
+		crouching = Input.GetKey(downKey);	
+		anim.SetBool("Crouching",crouching);	
+		isCrouching();		
 
 		//Jump
 		if(Input.GetKeyDown(jumpKey) && jumpCount <= 1)
@@ -47,22 +52,39 @@ public class PlayerPhysics : MonoBehaviour {
 			rigidbody2D.velocity = jumpVector;
 			jumpCount++;
 			isJumping = true;
+			anim.SetTrigger("Jump");
+			anim.SetBool("Fall",true);
 		}
-
 		if(Input.GetKey(leftKey))
 		{
+			if(facingRight)
+			{
+				Flip();
+			}
 			player.transform.Translate(Vector3.left * Time.deltaTime * 5);
+			facingRight=false;
+			speed=1;
 		}  
 
-		if(Input.GetKey(rightKey))
+		else if(Input.GetKey(rightKey))
 		{
+			if(!facingRight)
+			{
+				Flip();
+			}
 			player.transform.Translate(Vector3.right * Time.deltaTime * 5);
+			facingRight=true;
+			speed=1;
+		}
+		else
+		{
+			speed=0;
 		}
 		if(isJumping && Input.GetKey(downKey))
 		{
 			player.transform.Translate(Vector3.down * Time.deltaTime * 4);
 		}
-
+		anim.SetFloat("Speed",Mathf.Abs(speed));
 		// If you want your object to go down on your platform
 		// Similar to the Contra game platform feature.
 		//if(Input.GetKeyDown(downKey))
@@ -78,7 +100,7 @@ public class PlayerPhysics : MonoBehaviour {
 			boxCollider.center = circleCollider.center;
 		}
 		else{
-			boxCollider.center = circleCollider.center + new Vector2(0,0.4f);
+			boxCollider.center = circleCollider.center + new Vector2(0,0.5f);
 		}
 	}
 
@@ -94,9 +116,20 @@ public class PlayerPhysics : MonoBehaviour {
 		{
 			isJumping = false;
 			jumpCount = 0;
+			anim.SetBool("Fall",false);
+		}
+		else
+		{
+			anim.SetBool("Jump",false);
 		}
 
-	}	
+	}
+	void Flip()
+	{
+		Vector3 theScale = transform.localScale;
+		theScale.x*=-1;
+		transform.localScale=theScale;
+	}
 	// have a seperated gameobject that has a boxcollider2d make sure is trigger is checked
 	// in my case I named it Trigger and parent it to the platform
 	// and make sure it is just a little under your platform.
