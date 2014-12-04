@@ -15,6 +15,13 @@ public class BulletScript : MonoBehaviour
 	{
 		if (coll.gameObject.tag == "Player")
 		{
+			GameObject[] guns = GameObject.FindGameObjectsWithTag("Gun");
+			for(int i = 0; i < guns.Length; i++)
+			{
+				DestroyImmediate(guns[i]);
+				StageScrolling.levelSurvived = 0;
+			}
+
 			Destroy(coll.gameObject);
 			Application.LoadLevel("GameOver");
 		}
@@ -27,7 +34,6 @@ public class BulletScript : MonoBehaviour
 		{
 			Physics2D.IgnoreCollision(this.collider2D, coll.collider);
 
-			//Destroy(gameObject);
 		}
 	}
 }

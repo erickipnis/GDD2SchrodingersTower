@@ -15,7 +15,15 @@ public class Player_Death : MonoBehaviour {
 
 		if(player.transform.position.y <= -6)
 		{
+			GameObject[] guns = GameObject.FindGameObjectsWithTag("Gun");
+			for(int i = 0; i < guns.Length; i++)
+			{
+				DestroyImmediate(guns[i]);
+				StageScrolling.levelSurvived = 0;
+			}
+
 			Application.LoadLevel("GameOver");
+
 		}
 	
 	}

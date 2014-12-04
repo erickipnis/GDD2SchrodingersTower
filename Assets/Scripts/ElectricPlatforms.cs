@@ -48,6 +48,13 @@ public class ElectricPlatforms : MonoBehaviour {
 	{
 		if (coll.gameObject.tag == "Player" && isDangerous)
 		{
+			GameObject[] guns = GameObject.FindGameObjectsWithTag("Gun");
+			for(int i = 0; i < guns.Length; i++)
+			{
+				DestroyImmediate(guns[i]);
+				StageScrolling.levelSurvived = 0;
+			}
+
 			Destroy(coll.gameObject);
 			Application.LoadLevel("GameOver");
 		}

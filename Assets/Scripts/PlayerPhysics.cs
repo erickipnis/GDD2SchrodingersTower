@@ -22,9 +22,6 @@ public class PlayerPhysics : MonoBehaviour {
 	float speed = 0;
 	Animator anim;
 
-
-	//BoxCollider2D box = player.GetComponent(BoxCollider2D) as BoxCollider2D; //assign the BoxCollider2D of your player and set it to is trigger
-
 	void Start()
 	{
 		jumpKey = KeyCode.W; //assign jump button here
@@ -85,12 +82,6 @@ public class PlayerPhysics : MonoBehaviour {
 			player.transform.Translate(Vector3.down * Time.deltaTime * 4);
 		}
 		anim.SetFloat("Speed",Mathf.Abs(speed));
-		// If you want your object to go down on your platform
-		// Similar to the Contra game platform feature.
-		//if(Input.GetKeyDown(downKey))
-		//{
-		//	box.isTrigger = true;
-		//}
 	}
 
 	void isCrouching(){
@@ -106,11 +97,6 @@ public class PlayerPhysics : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		/*if (coll.gameObject.tag == "Bullet")
-		{
-			Destroy(gameObject);
-			Destroy(coll.gameObject);
-		}*/
 
 		if(coll.gameObject.tag == "Floor" || coll.gameObject.tag == "Block")
 		{
@@ -130,31 +116,4 @@ public class PlayerPhysics : MonoBehaviour {
 		theScale.x*=-1;
 		transform.localScale=theScale;
 	}
-	// have a seperated gameobject that has a boxcollider2d make sure is trigger is checked
-	// in my case I named it Trigger and parent it to the platform
-	// and make sure it is just a little under your platform.
-	// your platform should have a boxcollider2D is trigger off
-	
-	// detects trigger and makes your players boxcollider2D isTrigger true which disables
-	// collision and make it pass through your platform
-	
-	/*void OnTriggerEnter2D (Collider2D hitInfo)
-	{
-		if(hitInfo.name == "Player") 
-		{
-			box.isTrigger = true;
-		}
-	}
-	
-	
-	// Exits your Trigger and set your player Collider2D.isTrigger false, which makes it collide
-	// to your platform again.
-	
-	void OnTriggerExit2D (Collider2D hitInfo)
-	{
-		if(hitInfo.name == "Trigger") 
-		{
-			box.isTrigger = false;
-		}
-	}*/
 }
