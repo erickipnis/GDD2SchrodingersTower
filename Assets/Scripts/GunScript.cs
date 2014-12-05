@@ -24,7 +24,7 @@ public class GunScript : MonoBehaviour
 	{
 		shootCooldown = 0f;
 
-		gunPosition = 0;;
+		gunPosition = new Vector2(0,0);
 	}
 	
 	void Update()

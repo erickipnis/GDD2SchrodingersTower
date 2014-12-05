@@ -11,10 +11,11 @@ public class StageScrolling : MonoBehaviour {
 	GameObject[] playables;
 
 	GameObject guns;
+	GameObject[] allGuns;
 
 	int incrementer = 0;
 	int change = 0;
-	int definedScroll = 300;
+	int definedScroll = 1000;
 
 	public static int levelSurvived = 0;
 
@@ -27,10 +28,16 @@ public class StageScrolling : MonoBehaviour {
 	bool changeStart = false;
 
 	Vector2 startPosition;
-	Vector2 gunCurrent;
+	public static Vector2 gunCurrent;
+	public static Vector2 gunCurrent2;
+	public static Vector2 gunCurrent3;
+	public static Vector2 gunCurrent4;
+	public static Vector2 gunCurrent5;
 
 	int numLevels = 0;
 	int numGoneThrough = 0;
+
+	int numGuns = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -48,7 +55,30 @@ public class StageScrolling : MonoBehaviour {
 
 		guns = GameObject.FindGameObjectWithTag("Gun");
 
+		allGuns = GameObject.FindGameObjectsWithTag("Gun");
+
+
 		gunCurrent = guns.transform.position;
+
+
+		gunCurrent2 = new Vector2(0,0);
+		gunCurrent3 = new Vector2(0,0);
+		gunCurrent4 = new Vector2(0,0);
+		gunCurrent5 = new Vector2(0,0);
+
+		
+		guns.GetComponent<GunScript>().enabled = true;
+		guns.GetComponent<SpriteRenderer>().enabled = true;
+		guns.GetComponent<Collider2D>().enabled = false;
+
+
+		foreach(GameObject gun in allGuns)
+		{
+			gun.GetComponent<GunScript>().enabled = true;
+			gun.GetComponent<SpriteRenderer>().enabled = true;
+			gun.GetComponent<Collider2D>().enabled = false;
+
+		}
 
 		/*foreach(GameObject play in playables)
 		{
@@ -63,9 +93,7 @@ public class StageScrolling : MonoBehaviour {
 
 		}*/
 
-		guns.GetComponent<GunScript>().enabled = true;
-		guns.GetComponent<SpriteRenderer>().enabled = true;
-		guns.GetComponent<Collider2D>().enabled = false;
+
 		//DontDestroyOnLoad(score);
 	}
 	
@@ -75,6 +103,14 @@ public class StageScrolling : MonoBehaviour {
 		GUIText scoreTm = (GUIText)score.GetComponent(typeof(GUIText));
 
 		GUIText levelTm = (GUIText)survived.GetComponent(typeof(GUIText));
+
+		allGuns = GameObject.FindGameObjectsWithTag("Gun");
+		numGuns = 0;
+
+		foreach(GameObject gun in allGuns)
+		{
+			numGuns++;
+		}
 
 		if(changeStart)
 		{
@@ -88,13 +124,44 @@ public class StageScrolling : MonoBehaviour {
 
 			Vector2 currentPosition = stage.transform.position;
 			Vector2 startP = startPosition;
-
+		
 			guns.GetComponent<GunScript>().enabled = false;
 			guns.GetComponent<SpriteRenderer>().enabled = false;
 			guns.GetComponent<Collider2D>().enabled = false;
-
-
+			
+			
 			guns.transform.position = gunCurrent;
+			
+			foreach(GameObject gun in allGuns)
+			{
+				gun.GetComponent<GunScript>().enabled = false;
+				gun.GetComponent<SpriteRenderer>().enabled = false;
+				//gun.GetComponent<Collider2D>().enabled = false;
+				
+			}
+
+			if(numGuns == 2)
+			{
+				allGuns[1].transform.position = gunCurrent2;
+			}
+			if(numGuns == 3)
+			{
+				allGuns[1].transform.position = gunCurrent2;
+				allGuns[2].transform.position = gunCurrent3;
+			}
+			if(numGuns == 4)
+			{
+				allGuns[1].transform.position = gunCurrent2;
+				allGuns[2].transform.position = gunCurrent3;
+				allGuns[3].transform.position = gunCurrent4;
+			}
+			if(numGuns == 5)
+			{
+				allGuns[1].transform.position = gunCurrent2;
+				allGuns[2].transform.position = gunCurrent3;
+				allGuns[3].transform.position = gunCurrent4;
+				allGuns[4].transform.position = gunCurrent5;
+			}
 			
 			while(scroll)
 			{
@@ -120,9 +187,19 @@ public class StageScrolling : MonoBehaviour {
 
 				levelTm.text = levelSurvived.ToString();
 
+
 				guns.GetComponent<GunScript>().enabled = true;
 				guns.GetComponent<SpriteRenderer>().enabled = true;
 				guns.GetComponent<Collider2D>().enabled = false;
+
+
+				foreach(GameObject gun in allGuns)
+				{
+					gun.GetComponent<GunScript>().enabled = true;
+					gun.GetComponent<SpriteRenderer>().enabled = true;
+					//gun.GetComponent<Collider2D>().enabled = false;
+					
+				}
 
 				/*playables[current].SetActive(false);
 				

@@ -25,21 +25,29 @@ public class LevelManager : MonoBehaviour {
 		{
 			cannon = (GameObject) GameObject.Instantiate(rightCannonPrefab, new Vector3(6.434641f, -0.2688184f, 0f), Quaternion.identity);
 			gunSpawned = true;
+
+			StageScrolling.gunCurrent2 = new Vector2(6.434641f, -0.2688184f);
 		}
 		else if (StageScrolling.levelSurvived == 2 && gunSpawned == false)
 		{
 			cannon = (GameObject) GameObject.Instantiate(topCannonPrefab, new Vector3(6.588336f, 2.8639318f, 0f), Quaternion.identity);
 			gunSpawned = true;
+
+			StageScrolling.gunCurrent3 = new Vector2(6.588336f, 2.8639318f);
 		}
 		else if (StageScrolling.levelSurvived == 3 && gunSpawned == false)
 		{
 			cannon = (GameObject) GameObject.Instantiate(rightCannonPrefab, new Vector3(6.434641f, -0.588184f, 0f), Quaternion.identity);
 			gunSpawned = true;
+
+			StageScrolling.gunCurrent4 = new Vector2(6.434641f, -0.588184f);
 		}
 		else if (StageScrolling.levelSurvived == 4 && gunSpawned == false)
 		{
 			cannon = (GameObject) GameObject.Instantiate(leftCannonPrefab, new Vector3(-6.390183f, -0.588184f, 0f), Quaternion.identity);
 			gunSpawned = true;
+
+			StageScrolling.gunCurrent5 = new Vector2(-6.390183f, -0.588184f);
 		}
 	}
 }
