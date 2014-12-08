@@ -15,7 +15,7 @@ public class StageScrolling : MonoBehaviour {
 
 	int incrementer = 0;
 	int change = 0;
-	int definedScroll = 1000;
+	int definedScroll = (int)990;
 
 	public static int levelSurvived = 0;
 
@@ -49,7 +49,7 @@ public class StageScrolling : MonoBehaviour {
 
 		startPosition = stage.transform.position;
 
-		timeToScroll = definedScroll;
+		timeToScroll = definedScroll + (numLevels * 62);
 
 		playables = GameObject.FindGameObjectsWithTag("Playable");
 
@@ -225,7 +225,11 @@ public class StageScrolling : MonoBehaviour {
 			if(timeToScroll <= 0)
 			{
 				move = true;
-				timeToScroll = definedScroll;
+				timeToScroll = definedScroll  + ((int)(levelSurvived * 312.5));
+
+				Debug.Log(timeToScroll);
+
+				Debug.Log(definedScroll  + (levelSurvived * 312));
 
 			}
 			else
@@ -233,7 +237,7 @@ public class StageScrolling : MonoBehaviour {
 				timeToScroll--;
 			}
 
-			scoreTm.text = (timeToScroll/60).ToString();
+			scoreTm.text = ((int)(timeToScroll/62.5)).ToString();
 
 		}
 	}

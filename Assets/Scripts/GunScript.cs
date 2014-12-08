@@ -86,12 +86,14 @@ public class GunScript : MonoBehaviour
 		{
 			shootCooldown = .5f;
 
+			//rMin += StageScrolling.levelSurvived * 2;
+
 			int r = (int)Random.Range(0, rFreq);
 			//print (r);
 			Debug.Log(r);
 
 
-			if(r <= 75 )
+			if(r <= (75 + (StageScrolling.levelSurvived * 2)) )
 			{
 				var shotTransform = Instantiate(bulletPrefab) as Transform;
 			
