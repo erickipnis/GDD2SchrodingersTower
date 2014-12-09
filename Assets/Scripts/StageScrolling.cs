@@ -240,5 +240,15 @@ public class StageScrolling : MonoBehaviour {
 			scoreTm.text = ((int)(timeToScroll/62.5)).ToString();
 
 		}
+
+		if(levelSurvived == 10 && timeToScroll == 0)
+		{
+			levelSurvived = 0;
+			for(int i = 0; i < allGuns.Length; i++)
+			{
+				Destroy(allGuns[i]);
+			}
+			Application.LoadLevel("Win");
+		}
 	}
 }
