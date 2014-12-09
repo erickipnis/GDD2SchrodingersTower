@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-
 public class PlayerPhysics : MonoBehaviour {
 
 	//This script is attached to the player
@@ -21,7 +20,9 @@ public class PlayerPhysics : MonoBehaviour {
 	bool facingRight = true;
 	float speed = 0;
 	Animator anim;
-
+	AudioClip meowSound;
+	bool playAudio;
+	
 	void Start()
 	{
 		jumpKey = KeyCode.W; //assign jump button here
@@ -37,6 +38,7 @@ public class PlayerPhysics : MonoBehaviour {
 
 	void Update () 
 	{
+
 		crouching = Input.GetKey(downKey);	
 		anim.SetBool("Crouching",crouching);	
 		isCrouching();		
@@ -116,4 +118,15 @@ public class PlayerPhysics : MonoBehaviour {
 		theScale.x*=-1;
 		transform.localScale=theScale;
 	}
+
+	/*void PlaySound()
+	{
+		yield return new WaitForSeconds((int)Random.Range(1, 10));
+		if(playAudio && !audio.isPlaying)
+		{
+			audio.PlayOneShot(meowSound);
+		}
+
+		playAudio = !playAudio;
+	}*/
 }

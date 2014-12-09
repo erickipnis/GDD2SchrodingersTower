@@ -13,6 +13,7 @@ public class BulletScript : MonoBehaviour
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
+
 		if (coll.gameObject.tag == "Player")
 		{
 			GameObject[] guns = GameObject.FindGameObjectsWithTag("Gun");
@@ -22,8 +23,8 @@ public class BulletScript : MonoBehaviour
 				StageScrolling.levelSurvived = 0;
 			}
 
-			//Destroy(coll.gameObject);
-			//Application.LoadLevel("GameOver");
+			Destroy(coll.gameObject);
+			Application.LoadLevel("GameOver");
 		}
 		
 		if (coll.gameObject.tag == "Elevator" || coll.gameObject.tag == "Floor")
