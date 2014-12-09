@@ -22,7 +22,7 @@ public class BulletScript : MonoBehaviour
 				StageScrolling.levelSurvived = 0;
 			}
 
-			Destroy(coll.gameObject);
+			//Destroy(coll.gameObject);
 			//Application.LoadLevel("GameOver");
 		}
 		
