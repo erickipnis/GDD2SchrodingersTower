@@ -38,8 +38,6 @@ public class BulletScript : MonoBehaviour
 		if (coll.gameObject.tag == "Bullet")
 		{
 			Physics2D.IgnoreCollision(this.collider2D, coll.collider);
-			
-			//Destroy(gameObject);
 		}
 	}
 }

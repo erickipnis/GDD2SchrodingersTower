@@ -44,10 +44,10 @@ public class LevelManager : MonoBehaviour {
 		}
 		else if (StageScrolling.levelSurvived == 8 && gunSpawned == false)
 		{
-			cannon = (GameObject) GameObject.Instantiate(leftCannonPrefab, new Vector3(-6.390183f, -1.588184f, 0f), Quaternion.identity);
+			cannon = (GameObject) GameObject.Instantiate(leftCannonPrefab, new Vector3(-6.390183f, -3.588184f, 0f), Quaternion.identity);
 			gunSpawned = true;
 
-			StageScrolling.gunCurrent5 = new Vector2(-6.390183f, -1.588184f);
+			StageScrolling.gunCurrent5 = new Vector2(-6.390183f, -3.588184f);
 		}
 	}
 }

@@ -241,7 +241,7 @@ public class StageScrolling : MonoBehaviour {
 
 		}
 
-		if(levelSurvived == 10 && timeToScroll == 0)
+		if(levelSurvived == 9 && timeToScroll == 0)
 		{
 			levelSurvived = 0;
 			for(int i = 0; i < allGuns.Length; i++)
