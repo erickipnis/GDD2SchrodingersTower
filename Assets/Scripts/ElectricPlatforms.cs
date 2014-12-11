@@ -4,14 +4,16 @@ using System.Collections;
 public class ElectricPlatforms : MonoBehaviour {
 
 	bool isDangerous;
+	bool cooldown;
 	SpriteRenderer renderer;
 	float timeElapsed = 0;
+	Animator anim;
 
 	// Use this for initialization
 	void Start () {
-		renderer = GetComponent<SpriteRenderer>();
-		renderer.color = new Color(255f, 0f, 0f);
 		isDangerous = false;
+		cooldown = false;
+		anim=GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -19,23 +21,35 @@ public class ElectricPlatforms : MonoBehaviour {
 
 		float randomNumber = Random.value * 100;
 
-		timeElapsed += Time.deltaTime;
+		if (isDangerous || cooldown)
+		{
+			timeElapsed += Time.deltaTime;
+		}
 	//	Debug.Log(timeElapsed);
 
 		//Debug.Log(randomNumber);
 
-		if ((int)randomNumber <= 1)
+		if ((int)randomNumber == 1)
 		{
-			isDangerous = true;
-			renderer.color = new Color(255f, 0f, 0f);
+			if (!cooldown)
+			{
+				isDangerous = true;
+			}
 		}
 
-		if (timeElapsed >= 3)
+		if (timeElapsed >= 3 & isDangerous)
 		{
 			isDangerous = false;
 			timeElapsed = 0;
-			renderer.color = new Color(255f, 255f, 255f);
+			cooldown = true;
 		}
+		else if (timeElapsed >= 3 & cooldown)
+		{
+			cooldown = false;
+			timeElapsed = 0;
+		}
+
+		anim.SetBool("Dangerous",isDangerous);
 
 		//{
 		//	isDangerous = false;
