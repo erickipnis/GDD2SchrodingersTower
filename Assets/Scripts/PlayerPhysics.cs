@@ -20,8 +20,6 @@ public class PlayerPhysics : MonoBehaviour {
 	bool facingRight = true;
 	float speed = 0;
 	Animator anim;
-	AudioClip meowSound;
-	bool playAudio;
 	
 	void Start()
 	{
@@ -38,7 +36,6 @@ public class PlayerPhysics : MonoBehaviour {
 
 	void Update () 
 	{
-
 		crouching = Input.GetKey(downKey);	
 		anim.SetBool("Crouching",crouching);	
 		isCrouching();		
@@ -84,6 +81,7 @@ public class PlayerPhysics : MonoBehaviour {
 			player.transform.Translate(Vector3.down * Time.deltaTime * 4);
 		}
 		anim.SetFloat("Speed",Mathf.Abs(speed));
+	
 	}
 
 	void isCrouching(){
@@ -119,14 +117,4 @@ public class PlayerPhysics : MonoBehaviour {
 		transform.localScale=theScale;
 	}
 
-	/*void PlaySound()
-	{
-		yield return new WaitForSeconds((int)Random.Range(1, 10));
-		if(playAudio && !audio.isPlaying)
-		{
-			audio.PlayOneShot(meowSound);
-		}
-
-		playAudio = !playAudio;
-	}*/
 }
