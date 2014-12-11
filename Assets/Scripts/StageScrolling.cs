@@ -227,6 +227,8 @@ public class StageScrolling : MonoBehaviour {
 				move = true;
 				timeToScroll = definedScroll  + ((int)(levelSurvived * 312.5));
 
+				GunScript.toAddTo+=5;
+
 				Debug.Log(timeToScroll);
 
 				Debug.Log(definedScroll  + (levelSurvived * 312));

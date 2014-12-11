@@ -18,6 +18,8 @@ public class GunScript : MonoBehaviour
 	// Random Frequency
 	public float rFreq = 99;
 
+	public static int toAddTo = 0;
+
 	public static Vector2 gunPosition;
 	
 	void Start()
@@ -93,7 +95,7 @@ public class GunScript : MonoBehaviour
 			Debug.Log(r);
 
 
-			if(r <= (75 + (StageScrolling.levelSurvived * 2)) )
+			if(r <= (50 + toAddTo))
 			{
 				var shotTransform = Instantiate(bulletPrefab) as Transform;
 			
