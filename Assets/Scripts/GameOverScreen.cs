@@ -26,7 +26,7 @@ public class GameOverScreen : MonoBehaviour
 		
 		if(GUI.Button(new Rect(Screen.width/2 - (instrButtonWidth / 2), (2 * Screen.height / 2.5f) - (buttonHeight / 2), instrButtonWidth, buttonHeight), "Return to Title"))
 		{
-			Application.LoadLevel("StartScreen");
+			Application.LoadLevel("Start");
 		}
 	}
 }
